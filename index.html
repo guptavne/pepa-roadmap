@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Engagement Product & Analytics - Roadmap 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #232F3E 0%, #37475A 50%, #48627D 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Black Road Background - positioned to avoid headers */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 50px;
+            width: 80px;
+            height: 100vh;
+            background: #000000;
+            z-index: -2;
+            border-radius: 8px;
+            border: 2px solid var(--amazon-orange);
+        }
+
+        /* Orange road marks animation */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50px;
+            right: 86px;
+            width: 8px;
+            height: 100vh;
+            background: repeating-linear-gradient(
+                to bottom,
+                var(--amazon-orange) 0px,
+                var(--amazon-orange) 25px,
+                transparent 25px,
+                transparent 50px
+            );
+            z-index: -1;
+            animation: roadMove 2s linear infinite;
+        }
+
+        @keyframes roadMove {
+            0% { transform: translateY(-50px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* PEPA Pig Character - riding on motor-bike with animation */
+        .pepa-pig {
+            position: fixed;
+            right: 20px;
+            top: 20%;
+            width: 120px;
+            height: 80px;
+            z-index: 1001;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bikeRide 1.5s ease-in-out infinite;
+        }
+
+        .pepa-pig::before {
+            content: '🐷🏍️';
+            font-size: 48px;
+            filter: drop-shadow(3px 3px 8px rgba(0,0,0,0.4));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 153, 0, 0.1));
+            border-radius: 25px;
+            padding: 10px 15px;
+            border: 3px solid var(--amazon-orange);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.3);
+            animation: wiggle 0.8s ease-in-out infinite alternate;
+        }
+
+        .pepa-pig::after {
+            content: '';
+        }
+
+        .pepa-pig:hover {
+            transform: scale(1.1);
+            animation: bikeRide 0.8s ease-in-out infinite, bounce 0.6s ease-in-out;
+        }
+
+        @keyframes bikeRide {
+            0%, 100% { 
+                transform: translateY(0px) rotate(-1deg); 
+            }
+            50% { 
+                transform: translateY(-5px) rotate(1deg); 
+            }
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1.1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        /* Speech bubble */
+        .speech-bubble {
+            position: fixed;
+            right: 120px;
+            top: 15%;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 2px solid var(--amazon-orange);
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--amazon-dark-blue);
+            display: none;
+            z-index: 1002;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 10px solid transparent;
+            border-left-color: white;
+        }
+
+        /* Road Signs */
+        .road-sign {
+            position: absolute;
+            top: -50px;
+            right: 20px;
+            background: #228B22;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: perspective(100px) rotateX(10deg);
+        }
+
+        .road-sign::before {
+            content: '📍';
+            margin-right: 8px;
+        }
+
+        /* Amazon Brand Colors */
+        :root {
+            --amazon-orange: #FF9900;
+            --amazon-dark-blue: #232F3E;
+            --amazon-light-gray: #F3F3F3;
+            --amazon-white: #FFFFFF;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--amazon-dark-blue), #2a3f5f);
+            color: var(--amazon-white);
+            padding: 2rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--amazon-orange);
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--amazon-white);
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--amazon-orange);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav a {
+            color: var(--amazon-dark-blue);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: var(--amazon-orange);
+            color: var(--amazon-white);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--amazon-orange);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            scroll-margin-top: 120px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(243, 243, 243, 0.9));
+            margin-bottom: 2px;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, rgba(243, 243, 243, 0.95), rgba(255, 255, 255, 0.9));
+        }
+
+        .section:nth-child(odd):not(.exec-summary) {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 249, 250, 0.95));
+        }
+
+        .section h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--amazon-dark-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--amazon-orange);
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            color: var(--amazon-dark-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .section h4 {
+            font-size: 1.4rem;
+            color: var(--amazon-orange);
+            margin-bottom: 1rem;
+        }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            color: #333333 !important;
+        }
+
+        .exec-summary h2 {
+            color: var(--amazon-dark-blue) !important;
+            text-shadow: none;
+        }
+
+        .exec-summary p {
+            color: #333333 !important;
+            text-shadow: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .exec-summary .highlight {
+            background: var(--amazon-orange);
+            color: #ffffff !important;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-weight: bold;
+            text-shadow: none;
+            box-shadow: 0 2px 4px rgba(255, 153, 0, 0.3);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--amazon-white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--amazon-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--amazon-orange);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--amazon-dark-blue);
+            margin-top: 0.5rem;
+        }
+
+        /* Mission & Tenets */
+        .mission-box {
+            background: var(--amazon-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--amazon-orange);
+            margin-bottom: 3rem;
+        }
+
+        .tenets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tenet {
+            background: var(--amazon-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--amazon-orange);
+        }
+
+        .tenet h4 {
+            color: var(--amazon-dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .dashboard-card {
+            background: var(--amazon-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--amazon-orange);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .dashboard-header {
+            background: var(--amazon-dark-blue);
+            color: var(--amazon-white);
+            padding: 1.5rem;
+        }
+
+        .dashboard-header h4 {
+            color: var(--amazon-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header h4 a {
+            color: var(--amazon-orange) !important;
+            text-decoration: none !important;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin: -8px -12px;
+        }
+
+        .dashboard-header h4 a:hover {
+            background: rgba(255, 153, 0, 0.1);
+            transform: scale(1.02);
+            text-shadow: 0 0 8px rgba(255, 153, 0, 0.5);
+        }
+
+        .dashboard-header h4 a::after {
+            content: ' 🔗';
+            margin-left: 8px;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .pillar-tag {
+            background: var(--amazon-orange);
+            color: var(--amazon-white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Big Bets */
+        .big-bet {
+            background: var(--amazon-white);
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .big-bet-header {
+            background: linear-gradient(135deg, var(--amazon-orange), #ffb84d);
+            color: var(--amazon-white);
+            padding: 2rem;
+        }
+
+        .big-bet-header h4 {
+            color: var(--amazon-white);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .big-bet-content {
+            padding: 2rem;
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .problem-box, .solution-box {
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .problem-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+
+        .solution-box {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+        }
+
+        /* Lists */
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--amazon-dark-blue);
+            color: var(--amazon-white);
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer .company {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .footer .confidential {
+            font-size: 1.1rem;
+            color: var(--amazon-orange);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .problem-solution {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        /* Password Protection Styles */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--amazon-dark-blue), #2a3f5f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .password-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-form h2 {
+            color: var(--amazon-dark-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .password-form p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .password-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .password-form input:focus {
+            border-color: var(--amazon-orange);
+            outline: none;
+        }
+
+        .password-form button {
+            background: var(--amazon-orange);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .password-form button:hover {
+            background: #e88900;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .protected-content {
+            display: none;
+        }
+
+        .content-visible .protected-content {
+            display: block;
+        }
+
+        .content-visible .password-overlay {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Protection Overlay -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-form">
+            <h2>🔒 PEPA Roadmap Access</h2>
+            <p>This presentation contains internal Amazon content.<br>Please enter the access code:</p>
+            <form id="passwordForm" onsubmit="checkPassword(event)">
+                <input type="password" id="passwordInput" placeholder="Enter access code" required autocomplete="off">
+                <br>
+                <button type="submit">Access Presentation</button>
+            </form>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Protected Content -->
+    <div class="protected-content">
+        <!-- Progress Bar -->
+        <div class="progress-bar" id="progressBar"></div>
+
+    <!-- PEPA Pig Character -->
+    <div class="pepa-pig" id="pepaPig"></div>
+    <div class="speech-bubble" id="speechBubble">Welcome to our journey!</div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1>Partner Engagement Product & Analytics (PEPA)</h1>
+                <div class="subtitle">Roadmap 2026</div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="#executive-summary">Executive Summary</a>
+                <a href="#mission-tenets">Mission & Tenets</a>
+                <a href="#foundations">2025 Foundations</a>
+                <a href="#flagship-products">Flagship Products</a>
+                <a href="#big-bets">Big Bet Initiatives</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </nav>
+
+    <!-- Executive Summary -->
+    <section id="executive-summary" class="section exec-summary">
+        <div class="road-sign">Start: Executive Summary</div>
+        <div class="container">
+            <h2>Executive Summary</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                The Partner Engagement Product & Analytics (PEPA) team powers the analytics infrastructure that drives Partner Engagement's ambitious <span class="highlight">40% contact elimination goal for 2026</span>. We support <span class="highlight">70+ Global Program Owners</span> and <span class="highlight">40 partner teams</span> while managing analytics for over <span class="highlight">120 million annual contacts</span> across Seller Support and One Amazon Support (OAS).
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">40%</span>
+                    <div class="stat-label">Contact Elimination Goal</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">70+</span>
+                    <div class="stat-label">Global Program Owners</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">120M</span>
+                    <div class="stat-label">Annual Contacts</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">65%</span>
+                    <div class="stat-label">MoB Evaluations Automated</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Mission & Tenets -->
+    <section id="mission-tenets" class="section">
+        <div class="road-sign">Next Stop: Mission & Tenets</div>
+        <div class="container">
+            <h2>Team Mission & Tenets</h2>
+            
+            <div class="mission-box">
+                <h3>Mission Statement</h3>
+                <p style="font-size: 1.2rem; font-weight: 500; color: var(--amazon-dark-blue);">
+                    PEPA delivers world-class analytics infrastructure, self-service products, and actionable insights that enable Partner Engagement to eliminate root causes of Selling Partner contacts, measure program impact with scientific rigor, and optimize resource allocation across CE and SX initiatives.
+                </p>
+            </div>
+
+            <h3>Team Tenets</h3>
+            <div class="tenets">
+                <div class="tenet">
+                    <h4>1. Data-Driven Actions and Insights Generation</h4>
+                    <p>We deliver actionable insights that drive strategic decision-making across Partner Engagement initiatives. Our focus extends beyond answering "what happened" to determine "what should we do."</p>
+                </div>
+                
+                <div class="tenet">
+                    <h4>2. Automate the Repetitive Focus on the Strategic</h4>
+                    <p>We treat manual and recurring analytics work as technical debt. Through systematic automation and self-service solutions, we eliminate redundant tasks and enable stakeholders to access insights independently.</p>
+                </div>
+                
+                <div class="tenet">
+                    <h4>3. Partner Obsession Through Data at Scale</h4>
+                    <p>We build scalable products and solutions that accelerate decision velocity across the organization.</p>
+                </div>
+                
+                <div class="tenet">
+                    <h4>4. Data Science and Gen BI Innovation</h4>
+                    <p>We apply rigorous analytical methods and generative BI solutions to identify highest-impact opportunities. Our recommendations are grounded in causal measurement, not correlation.</p>
+                </div>
+                
+                <div class="tenet">
+                    <h4>5. Trust Through Transparency</h4>
+                    <p>We make data accessible, pipelines visible, and assumptions explicit. Stakeholders understand how we arrive at conclusions and can validate our work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2025 Foundations -->
+    <section id="foundations" class="section">
+        <div class="road-sign">Mile 2: 2025 Foundations</div>
+        <div class="container">
+            <h2>2025 Learning: Foundations for Scale</h2>
+            
+            <h3>2025 Wins by Numbers</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">65%</span>
+                    <div class="stat-label">MoB Evaluations Automated</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">93%</span>
+                    <div class="stat-label">Queue Mapping Code Reduction</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">29K</span>
+                    <div class="stat-label">Content Assets Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">16</span>
+                    <div class="stat-label">Production Dashboards</div>
+                </div>
+            </div>
+
+            <div class="mission-box">
+                <h3>Key Achievements</h3>
+                <ul>
+                    <li><strong>Automated 65% of MoB evaluations</strong> via Workfront integration</li>
+                    <li><strong>Reduced queue mapping codebase by 93%</strong> (15K to 1K lines) through database table and S3 integration</li>
+                    <li><strong>Consolidated health tracking for 29K content assets</strong> across help pages, SOPs, and blurbs</li>
+                    <li><strong>Launched 16 production dashboards</strong> for Partner Engagement</li>
+                    <li><strong>Enabled first-ever OAS-grain reporting</strong> in VP-level flash</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flagship Products -->
+    <section id="flagship-products" class="section">
+        <div class="road-sign">Mile 3: Flagship Products</div>
+        <div class="container">
+            <h2>PEPA's Flagship Data Products</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-light);">
+                Our analytics infrastructure comprises 16 production dashboards that serve as the data backbone for Partner Engagement's four strategic pillars: OAS, Change Management, CE/CPU, and Content.
+            </p>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="pillar-tag">OAS</div>
+                        <h4><a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/d5d40974-be11-48f4-a7db-7cec3d046bb2?#" target="_blank" style="color: var(--amazon-orange); text-decoration: none;">OAS Seller Contacts and CPU Dashboard</a></h4>
+                        <p>Primary tracking mechanism for Partner Engagement's S-team goal</p>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>2025 Achievements:</h4>
+                        <ul>
+                            <li>Eliminated manual reporting burden by automating WBR/MBR generation</li>
+                            <li>Enabled real-time tracking of contact elimination S-team goal</li>
+                            <li>Delivered authoritative single source of truth for CPU reduction tracking</li>
+                        </ul>
+                        <h4>2026 Roadmap:</h4>
+                        <ul>
+                            <li>Unlock granular initiative-level CE tracking for 40% elimination goal</li>
+                            <li>Deploy AI-powered proactive insights for anomaly detection</li>
+                            <li>Enable case-level root cause analysis at scale</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="pillar-tag">OAS</div>
+                        <h4><a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/0bd8dbf2-e2b7-42fc-a08b-289c54d645f0" target="_blank" style="color: var(--amazon-orange); text-decoration: none;">OAS All Metrics Dashboard</a></h4>
+                        <p>Consolidates all Support Experience metrics for holistic performance visibility</p>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>2025 Achievements:</h4>
+                        <ul>
+                            <li>Eliminated tool fragmentation by consolidating all goal metrics</li>
+                            <li>Accelerated business review creation</li>
+                            <li>Provided holistic performance visibility across partner teams</li>
+                        </ul>
+                        <h4>2026 Roadmap:</h4>
+                        <ul>
+                            <li>Enable subteam-level accountability through granular visibility</li>
+                            <li>Integrate TRACE data for Atlas-to-TRACE transition continuity</li>
+                            <li>Expand vendor metrics integration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="pillar-tag">Change Management</div>
+                        <h4><a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/c5b60e8b-45e7-447d-9b08-16fb9300d68e" target="_blank" style="color: var(--amazon-orange); text-decoration: none;">📊 End-to-End Change Management Dashboard</a></h4>
+                        <p>Full change lifecycle visibility from Workfront intake through launch</p>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>2026 Roadmap:</h4>
+                        <ul>
+                            <li>Provide visibility into full change lifecycle</li>
+                            <li>Performance benchmarking across Global Program Owners</li>
+                            <li>Business vertical and change type analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="pillar-tag">Content</div>
+                        <h4><a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/187419755406_SPS/dashboards/1ba47427-9658-4b2f-95b7-946a26b9282e" target="_blank" style="color: var(--amazon-orange); text-decoration: none;">Content Health Dashboard</a></h4>
+                        <p>Unified content health metrics across 29,000 assets</p>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>2025 Achievements:</h4>
+                        <ul>
+                            <li>Established content health tracking across 29,000 assets</li>
+                            <li>Data-driven deprecation tracking for content debt reduction</li>
+                            <li>Eliminated manual audit burden across disconnected systems</li>
+                        </ul>
+                        <h4>2026 Roadmap:</h4>
+                        <ul>
+                            <li>Expand coverage to vendor content</li>
+                            <li>Correlate content health scores with contact volumes</li>
+                            <li>Enable predictive content decay modeling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div class="pillar-tag">Content</div>
+                        <h4><a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/e83af592-7769-4a1c-b8f4-7ab95b274f50/sheets/e83af592-7769-4a1c-b8f4-7ab95b274f50_d2a39ce5-5959-4094-b275-9a45bb52019d" target="_blank" style="color: var(--amazon-orange); text-decoration: none;">End-to-End Change through Content Operations Dashboard</a></h4>
+                        <p>Comprehensive change tracking for Content Operations teams</p>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>2025 Achievements:</h4>
+                        <ul>
+                            <li>Eliminated manual WBR preparation burden</li>
+                            <li>First-ever visibility into content creation lifecycle</li>
+                            <li>Performance baseline across editors and content changes</li>
+                        </ul>
+                        <h4>2026 Roadmap:</h4>
+                        <ul>
+                            <li>Transform from "weather report" to action engine</li>
+                            <li>Quantify GPM and Content Operations impact on CE</li>
+                            <li>Enable editor skill development through performance visibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Big Bet Initiatives -->
+    <section id="big-bets" class="section">
+        <div class="road-sign">Mile 4: Big Bet Initiatives</div>
+        <div class="container">
+            <h2>Big Bet Initiatives</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-light);">
+                High-risk, high-reward product investments that could fundamentally transform how Amazon approaches contact elimination, support operations, and seller experience.
+            </p>
+
+            <div class="big-bet">
+                <div class="big-bet-header">
+                    <h4>Big Bet #1: PathSense - Seller Journey Friction Analysis</h4>
+                    <p>Revolutionary approach to understanding complete seller mission sequences</p>
+                </div>
+                <div class="big-bet-content">
+                    <div class="problem-solution">
+                        <div class="problem-box">
+                            <h4>Problem</h4>
+                            <p>Traditional CE approaches focus on isolated defects rather than understanding complete seller mission sequences. Sellers navigate complex multi-step journeys where friction at any point can lead to abandonment and generate support contacts.</p>
+                        </div>
+                        <div class="solution-box">
+                            <h4>Solution</h4>
+                            <p>PathSense identifies selling partner experience issues by analyzing complete business mission sequences. Integrates multiple data sources to understand full context and identify precise friction points where partners abandon critical tasks.</p>
+                        </div>
+                    </div>
+                    <h4><strong>Current Status</strong></h4>
+                    <p>Completing proof of concept focused on FBA Inventory Performance Index (IPI) improvement journeys in December 2025.</p>
+                    <h4><strong>Impact</strong></h4>
+                    <p>Produces prioritized list of friction points in seller journeys, enabling GPOs to focus CE initiatives on highest-impact friction points rather than volume-based prioritization.</p>
+                </div>
+            </div>
+
+            <div class="big-bet">
+                <div class="big-bet-header">
+                    <h4>Big Bet #2: TRACE Prioritization Engine</h4>
+                    <p>AI-powered prioritization for maximum ROI impact</p>
+                </div>
+                <div class="big-bet-content">
+                    <div class="problem-solution">
+                        <div class="problem-box">
+                            <h4>Problem</h4>
+                            <p>RCOs receive lists of root causes from TRACE but lack systematic guidance on which defects to prioritize. We incentivize volume-based CE rather than impact-based CE, wasting planning cycles on prioritization debates.</p>
+                        </div>
+                        <div class="solution-box">
+                            <h4>Solution</h4>
+                            <p>AI-powered prioritization engine that scores each root cause on three dimensions: Seller Impact (downstream GMS), OpEx Impact (variable cost per contact), and Effort to Resolve (engineering complexity score).</p>
+                        </div>
+                    </div>
+                    <h4><strong>Key Features</strong></h4>
+                    <ul>
+                        <li>Real-time root cause scoring dashboard</li>
+                        <li>"What-if" scenario planning capabilities</li>
+                        <li>ROI-optimized ranking with estimated impact</li>
+                    </ul>
+                    <h4><strong>Impact</strong></h4>
+                    <p>Shift from 15% uniform CE targets to differentiated, ROI-optimized targets per team. Enable formal benefit accounting in CE goals and reduce planning cycles from weeks to days.</p>
+                </div>
+            </div>
+
+            <div class="big-bet">
+                <div class="big-bet-header">
+                    <h4>Big Bet #3: Unified Data Mart (Data as a Product)</h4>
+                    <p>Scalable data infrastructure for self-service analytics</p>
+                </div>
+                <div class="big-bet-content">
+                    <div class="problem-solution">
+                        <div class="problem-box">
+                            <h4>Problem</h4>
+                            <p>PEPA responds to numerous ad-hoc data requests requiring manual data assembly across fragmented systems. This reactive model doesn't scale as OAS expands to additional contact areas in 2026.</p>
+                        </div>
+                        <div class="solution-box">
+                            <h4>Solution</h4>
+                            <p>Unified, query-optimized Data Mart consolidating all OAS data sources into single source of truth with standardized schemas, automated refresh cycles, and self-service query interfaces.</p>
+                        </div>
+                    </div>
+                    <h4><strong>Key Features</strong></h4>
+                    <ul>
+                        <li>Automated daily refresh with data quality validation</li>
+                        <li>Pre-aggregated dimensional models for sub-minute query performance</li>
+                        <li>Self-service QuickSight interfaces with row-level security</li>
+                        <li>Standardized metric definitions preventing conflicting narratives</li>
+                        <li>API layer enabling programmatic access for advanced users</li>
+                    </ul>
+                    <h4><strong>Impact</strong></h4>
+                    <p>Reduce ad-hoc data request volume significantly, freeing BIE/BA hours for strategic work. Enable OAS leadership self-service capabilities and eliminate data inconsistency issues.</p>
+                </div>
+            </div>
+
+            <div class="big-bet">
+                <div class="big-bet-header">
+                    <h4>Big Bet #4: Predictive Launch Risk Scoring (Crystal Ball)</h4>
+                    <p>Proactive risk management for feature launches</p>
+                </div>
+                <div class="big-bet-content">
+                    <div class="problem-solution">
+                        <div class="problem-box">
+                            <h4>Problem</h4>
+                            <p>Business teams launch features with unpredictable contact impact. We reactively measure post-launch via MoB, but by then damage is done.</p>
+                        </div>
+                        <div class="solution-box">
+                            <h4>Solution</h4>
+                            <p>Build pre-launch risk scoring model that predicts contact impact using historical launch patterns (similar features, teams, regions), BRD complexity signals (number of seller-facing changes, policy updates, fee changes), readiness indicators (CM checklist completion, content SLA adherence), and Paragon data (baseline contact rates for impacted Atlas labels). Model outputs Launch Risk Score (1-10) with projected contact volume with confidence intervals.</p>
+                        </div>
+                    </div>
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li><strong>Workfront integration</strong> (auto-score every change request)</li>
+                        <li><strong>Risk-based routing</strong> (low risk → fast-track, high risk → deep review)</li>
+                        <li><strong>"Safe to launch" recommendations</strong> with mitigation strategies</li>
+                        <li><strong>Post-launch validation loop</strong> (actual vs predicted)</li>
+                    </ul>
+                    <h4>Impact</h4>
+                    <p><strong>Prevent contact spikes.</strong> Enable proactive capacity planning. Shift from reactive fire-fighting to proactive risk management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="section">
+        <div class="road-sign">Destination: Resources & Documentation</div>
+        <div class="container">
+            <h2>Resources & Documentation</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-light);">
+                Access our comprehensive strategic documents and live analytics dashboards
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem;">
+                <!-- Strategic Documents -->
+                <div class="mission-box">
+                    <h3>📋 Strategic Documents</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 1rem;">
+                            <strong>📄 OP2 Document (10-pager)</strong><br>
+                            <a href="https://amazon.awsapps.com/workdocs-amazon/index.html#/document/3e9630bc548f5ad1ead13c3583c84dc76e354c03165986c59c55aba1416a3879" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → Partner Engagement Strategic Plan 2026
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>📋 Main Roadmap Document</strong><br>
+                            <a href="https://quip-amazon.com/xYeIAxmDG68T/Partner-Engagement-Product-Analytics-Roadmap-2026" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → PEPA Roadmap 2026 (Quip)
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>📊 Additional Production Dashboards</strong><br>
+                            <a href="https://quip-amazon.com/VOH4A39zJ7sp/PEPA-Additional-Production-Ready-Dashboard" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → Production Dashboard Catalog (Quip)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Live Dashboards -->
+                <div class="mission-box">
+                    <h3>📈 Live Analytics Dashboards</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 1rem;">
+                            <strong>🎯 OAS Seller Contacts and CPU Dashboard</strong><br>
+                            <a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/d5d40974-be11-48f4-a7db-7cec3d046bb2?#" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → Contact Elimination Tracking
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>📊 OAS All Metrics Dashboard</strong><br>
+                            <a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/0bd8dbf2-e2b7-42fc-a08b-289c54d645f0" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → Consolidated Support Experience Metrics
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>🏥 Content Health Dashboard</strong><br>
+                            <a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/187419755406_SPS/dashboards/1ba47427-9658-4b2f-95b7-946a26b9282e" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → Content Asset Health Tracking
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 1rem;">
+                            <strong>🔄 End-to-End Change through Content Operations</strong><br>
+                            <a href="https://us-east-1.quicksight.aws.amazon.com/sn/account/amazonbi/dashboards/e83af592-7769-4a1c-b8f4-7ab95b274f50/sheets/e83af592-7769-4a1c-b8f4-7ab95b274f50_d2a39ce5-5959-4094-b275-9a45bb52019d" 
+                               target="_blank" style="color: var(--amazon-orange); text-decoration: none;">
+                               → Content Operations Lifecycle
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--amazon-light-gray); border-radius: 10px;">
+                <h4 style="color: var(--amazon-dark-blue); margin-bottom: 1rem;">Questions or Need Access?</h4>
+                <p style="font-size: 1.1rem;">
+                    Contact: <strong><a href="mailto:guptavne@amazon.com" style="color: var(--amazon-orange); text-decoration: none;">guptavne@amazon.com</a></strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="company">Partner Engagement Product & Analytics (PEPA)</div>
+            <div class="confidential">Amazon Confidential</div>
+            <div style="margin-top: 1rem; font-size: 0.9rem;">
+                Questions? Contact <a href="mailto:guptavne@amazon.com" style="color: var(--amazon-orange); text-decoration: none;">guptavne@amazon.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // PEPA Pig speech messages for different sections
+        const speechMessages = {
+            'executive-summary': 'Hi - let me take you on PEPA\'s roadmap journey! 🚗',
+            'mission-tenets': 'Our mission guides us! 🎯',
+            'foundations': 'Building on 2025 wins! 🏗️',
+            'flagship-products': 'Check out our dashboards! 📊',
+            'big-bets': 'Big ideas ahead! 💡',
+            'resources': 'We made it to the end! 🏁'
+        };
+
+        let currentSectionId = '';
+        let speechTimeout = null;
+
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / documentHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        }
+
+        // Auto show speech bubble
+        function showSpeechBubble(message, duration = 4000) {
+            const speechBubble = document.getElementById('speechBubble');
+            speechBubble.textContent = message;
+            speechBubble.style.display = 'block';
+            
+            // Clear any existing timeout
+            if (speechTimeout) {
+                clearTimeout(speechTimeout);
+            }
+            
+            // Auto-hide after duration
+            speechTimeout = setTimeout(() => {
+                speechBubble.style.display = 'none';
+            }, duration);
+        }
+
+        // PEPA Pig position and speech updates
+        function updatePepaPig() {
+            const scrollTop = window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / documentHeight) * 100;
+            
+            // Move pig down as user scrolls (but keep it visible)
+            const pepaPig = document.getElementById('pepaPig');
+            const speechBubble = document.getElementById('speechBubble');
+            const newTop = 20 + (scrollPercent * 0.6); // Move pig slightly down as we scroll
+            pepaPig.style.top = Math.min(newTop, 80) + '%';
+            
+            // Update speech bubble position to follow pig
+            speechBubble.style.top = Math.min(newTop + 5, 85) + '%';
+
+            // Update speech bubble based on current section
+            const sections = document.querySelectorAll('.section');
+            let newSectionId = 'executive-summary';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.pageYOffset >= sectionTop) {
+                    newSectionId = section.getAttribute('id');
+                }
+            });
+
+            // Show speech bubble automatically when section changes
+            if (newSectionId !== currentSectionId && speechMessages[newSectionId]) {
+                currentSectionId = newSectionId;
+                showSpeechBubble(speechMessages[newSectionId]);
+            }
+        }
+
+        // Navigation highlighting
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Animate numbers counting up
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(numberEl => {
+                const targetText = numberEl.textContent;
+                let targetNum = 0;
+                let suffix = '';
+                
+                // Extract number and suffix
+                if (targetText.includes('%')) {
+                    targetNum = parseInt(targetText.replace('%', ''));
+                    suffix = '%';
+                } else if (targetText.includes('M')) {
+                    targetNum = parseInt(targetText.replace('M', ''));
+                    suffix = 'M';
+                } else if (targetText.includes('K')) {
+                    targetNum = parseInt(targetText.replace('K', ''));
+                    suffix = 'K';
+                } else if (targetText.includes('+')) {
+                    targetNum = parseInt(targetText.replace('+', ''));
+                    suffix = '+';
+                } else {
+                    targetNum = parseInt(targetText);
+                }
+
+                // Animate the number
+                let current = 0;
+                const increment = targetNum / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNum) {
+                        current = targetNum;
+                        clearInterval(timer);
+                    }
+                    numberEl.textContent = Math.floor(current) + suffix;
+                }, 30);
+            });
+        }
+
+        // Fade in animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.stat-card, .dashboard-card, .big-bet, .tenet');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight * 0.8) {
+                    element.classList.add('fade-in');
+                }
+            });
+        }
+
+        // PEPA Pig click interaction
+        document.getElementById('pepaPig').addEventListener('click', () => {
+            const speechBubble = document.getElementById('speechBubble');
+            speechBubble.style.display = speechBubble.style.display === 'block' ? 'none' : 'block';
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                speechBubble.style.display = 'none';
+            }, 3000);
+        });
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            updateProgressBar();
+            updatePepaPig();
+            updateActiveNav();
+            animateOnScroll();
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+            // Delay number animation to make it more noticeable
+            setTimeout(animateNumbers, 1000);
+            
+            // Show welcome message automatically after page loads
+            setTimeout(() => {
+                currentSectionId = 'executive-summary'; // Set initial section
+                showSpeechBubble(speechMessages['executive-summary'], 5000);
+            }, 2000); // Show after 2 seconds
+        });
+        // Password Protection JavaScript
+        function checkPassword(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Set your password here
+            const correctPassword = 'PEPA2026';
+            
+            if (password === correctPassword) {
+                // Correct password - show content
+                document.body.classList.add('content-visible');
+                errorMessage.textContent = '';
+            } else {
+                // Wrong password - show error
+                errorMessage.textContent = 'Incorrect access code. Please try again.';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+
+        // Auto-focus password input when page loads
+        window.addEventListener('load', () => {
+            document.getElementById('passwordInput').focus();
+        });
+    </script>
+
+    </div> <!-- End of protected-content -->
+</body>
+</html>
